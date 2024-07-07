@@ -45,7 +45,6 @@ const getAllProducts = async (req, res) => {
 const getSingleProduct = async (req, res) => {
   try {
     const { productId } = req.params;
-    console.log(productId);
 
     const result = await ProductService.getSingleProductFromDB(productId);
     res.status(200).json({
@@ -67,7 +66,6 @@ const udpateProduct = async (req, res) => {
     const data = req.body;
     const productData = ProductValidation.updateProductZodSchema.parse(data);
     const { productId } = req.params;
-    console.log(productId);
 
     const result = await ProductService.updateProductFromDB(
       productId,
@@ -90,7 +88,6 @@ const udpateProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
   try {
     const { productId } = req.params;
-    console.log(productId);
 
     const result = await ProductService.deleteProductFromDB(productId);
     res.status(200).json({

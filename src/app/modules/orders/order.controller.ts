@@ -4,7 +4,6 @@ import { OrderValidation } from "./order.validation";
 const insertOrder = async (req, res) => {
   try {
     const data = req.body;
-    console.log(data);
 
     const validateData = OrderValidation.createOrderZodSchema.parse(data);
 

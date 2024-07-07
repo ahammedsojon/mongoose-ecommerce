@@ -7,7 +7,6 @@ const insertProductIntoDB = async (payload) => {
 };
 
 const getProductsFromDB = async (queryString: string) => {
-  console.log(queryString);
   let queryOptions = {};
   if (queryString) {
     queryOptions = {

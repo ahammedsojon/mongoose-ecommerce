@@ -11,7 +11,7 @@ app.use("/api/products", ProductRoute);
 app.use("/api/orders", OrderRoute);
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
+  res.send("Welcome to mongoose ecommerce!");
 });
 
 app.use((req: Request, res: Response, next: NextFunction) => {

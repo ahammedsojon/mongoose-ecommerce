@@ -1,6 +1,7 @@
+import IProduct from "./product.interface";
 import Product from "./product.model";
 
-const insertProductIntoDB = async (payload) => {
+const insertProductIntoDB = async (payload: IProduct) => {
   const result = await Product.create(payload);
 
   return result;

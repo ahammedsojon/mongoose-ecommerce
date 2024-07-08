@@ -1,6 +1,6 @@
 interface IOrder {
   email: string;
-  prodcutId: string;
+  productId: string;
   price: number;
   quantity: number;
 }

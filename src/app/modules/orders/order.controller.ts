@@ -1,7 +1,9 @@
+import { Request, Response } from "express";
 import { OrderService } from "./order.service";
 import { OrderValidation } from "./order.validation";
+import IOrder from "./order.interface";
 
-const insertOrder = async (req, res) => {
+const insertOrder = async (req: Request, res: Response) => {
   try {
     const data = req.body;
 
@@ -22,10 +24,10 @@ const insertOrder = async (req, res) => {
   }
 };
 
-const getAllOrders = async (req, res) => {
+const getAllOrders = async (req: Request, res: Response) => {
   try {
     const { email } = req.query;
-    const result = await OrderService.getOrdersFromDB(email);
+    const result = await OrderService.getOrdersFromDB(email as string);
 
     res.status(200).json({
       success: true,

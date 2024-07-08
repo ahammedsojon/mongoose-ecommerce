@@ -1,7 +1,9 @@
+import { Request, Response } from "express";
 import { ProductService } from "./product.service";
 import { ProductValidation } from "./product.validation";
+import { object } from "zod";
 
-const insertProduct = async (req, res) => {
+const insertProduct = async (req: Request, res: Response) => {
   try {
     const data = req.body;
 
@@ -22,11 +24,11 @@ const insertProduct = async (req, res) => {
   }
 };
 
-const getAllProducts = async (req, res) => {
+const getAllProducts = async (req: Request, res: Response) => {
   try {
     const { searchTerm } = req.query;
 
-    const result = await ProductService.getProductsFromDB(searchTerm);
+    const result = await ProductService.getProductsFromDB(searchTerm as string);
 
     res.status(200).json({
       success: true,
@@ -42,7 +44,7 @@ const getAllProducts = async (req, res) => {
   }
 };
 
-const getSingleProduct = async (req, res) => {
+const getSingleProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
 
@@ -52,7 +54,7 @@ const getSingleProduct = async (req, res) => {
       message: "Product fetched successfully!",
       data: result,
     });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({
       success: false,
       message: error.message || "something went wrong!",
@@ -61,7 +63,7 @@ const getSingleProduct = async (req, res) => {
   }
 };
 
-const udpateProduct = async (req, res) => {
+const udpateProduct = async (req: Request, res: Response) => {
   try {
     const data = req.body;
     const productData = ProductValidation.updateProductZodSchema.parse(data);
@@ -76,7 +78,7 @@ const udpateProduct = async (req, res) => {
       message: "Product updated successfully!",
       data: result,
     });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({
       success: false,
       message: error.message || "something went wrong!",
@@ -85,7 +87,7 @@ const udpateProduct = async (req, res) => {
   }
 };
 
-const deleteProduct = async (req, res) => {
+const deleteProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
 
@@ -95,7 +97,7 @@ const deleteProduct = async (req, res) => {
       message: "Product deleted successfully!",
       data: result,
     });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({
       success: false,
       message: error.message || "something went wrong!",

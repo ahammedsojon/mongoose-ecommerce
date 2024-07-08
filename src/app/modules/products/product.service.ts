@@ -28,6 +28,7 @@ const getProductsFromDB = async (queryString: string) => {
     };
   }
   const result = await Product.find(queryOptions);
+  console.log(result);
 
   return result;
 };

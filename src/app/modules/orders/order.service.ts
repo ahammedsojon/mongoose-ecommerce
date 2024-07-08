@@ -13,18 +13,13 @@ const insertOrderIntoDB = async (payload: IOrder) => {
     throw new Error("Insufficient quantity available in inventory");
   }
 
-  const productQuantity =
-    product && product?.inventory.quantity - payload.quantity;
+  const newQuantity = product && product?.inventory.quantity - payload.quantity;
+  const stock = newQuantity > 0;
 
-  if (product?.inventory.quantity === 0) {
-    await Product.findByIdAndUpdate(productId, {
-      "product.inventory": { quantity: productQuantity, inStock: false },
-    });
-  } else {
-    await Product.findByIdAndUpdate(productId, {
-      "product.inventory": { quantity: productQuantity, inStock: true },
-    });
-  }
+  await Product.findByIdAndUpdate(productId, {
+    "inventory.quantity": newQuantity,
+    "inventory.stock": stock,
+  });
   const result = await Order.create(payload);
 
   return result;

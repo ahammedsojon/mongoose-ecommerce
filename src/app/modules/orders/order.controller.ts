@@ -15,10 +15,10 @@ const insertOrder = async (req: Request, res: Response) => {
       message: "Order created successfully!",
       data: result,
     });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({
       success: false,
-      message: "something went wrong!",
+      message: error.message || "something went wrong!",
       error: error,
     });
   }

@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { ProductService } from "./product.service";
 import { ProductValidation } from "./product.validation";
-import { object } from "zod";
 
 const insertProduct = async (req: Request, res: Response) => {
   try {
@@ -91,11 +90,11 @@ const deleteProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
 
-    const result = await ProductService.deleteProductFromDB(productId);
+    await ProductService.deleteProductFromDB(productId);
     res.status(200).json({
       success: true,
       message: "Product deleted successfully!",
-      data: result,
+      data: null,
     });
   } catch (error: any) {
     res.status(500).json({

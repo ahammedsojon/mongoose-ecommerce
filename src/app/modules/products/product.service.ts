@@ -59,9 +59,7 @@ const deleteProductFromDB = async (id: string) => {
   if (!product) {
     throw new Error("Product not found!");
   }
-  const result = await Product.findByIdAndDelete(id);
-
-  return result;
+  await Product.findByIdAndDelete(id);
 };
 
 export const ProductService = {
